@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>تقرير مشروع ScholarPath</title>
+<style>
+@page {
+  size: A4;
+  margin: 22mm 20mm 22mm 20mm;
+  @bottom-center { content: counter(page); font-family: "Segoe UI", sans-serif; font-size: 9pt; color: #6b6b6b; }
+}
+@page :first { margin: 0; @bottom-center { content: none; } }
+
+:root { --ink: #1b1f24; --muted: #5d6670; --accent: #1f4e79; --rule: #c9d3dd; --soft: #eef3f8; }
+html { direction: rtl; }
+body {
+  font-family: "Sakkal Majalla", "Traditional Arabic", "Simplified Arabic", serif;
+  font-size: 17pt; line-height: 1.5; color: var(--ink); background: #fff;
+  text-align: justify; margin: 0;
+}
+.en {
+  font-family: "Segoe UI", "Tahoma", sans-serif; font-size: 0.7em;
+  direction: ltr; unicode-bidi: isolate;
+}
+.en.n { white-space: nowrap; }
+p { margin: 0 0 0.55em; }
+
+/* Cover */
+.cover {
+  height: 297mm; box-sizing: border-box; padding: 38mm 24mm 24mm;
+  display: flex; flex-direction: column; justify-content: space-between;
+  background: linear-gradient(160deg, #f4f8fb 0%, #ffffff 55%);
+  border-right: 10mm solid var(--accent);
+  page-break-after: always;
+}
+.cover .kicker { font-size: 18pt; color: var(--muted); letter-spacing: 0; }
+.cover h1 { font-size: 40pt; line-height: 1.25; color: var(--accent); margin: 10mm 0 6mm; border: 0; padding: 0; }
+.cover .sub { font-size: 21pt; color: var(--ink); max-width: 150mm; }
+.cover .meta { font-size: 16pt; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 6mm; }
+.cover .meta div { margin-bottom: 2mm; }
+
+/* Headings */
+h1, h2, h3 { font-weight: 700; color: var(--accent); text-align: right; page-break-after: avoid; }
+h1 { font-size: 27pt; margin: 0 0 5mm; padding-bottom: 2mm; border-bottom: 2px solid var(--accent); }
+h2 { font-size: 21pt; margin: 6mm 0 2mm; }
+h3 { font-size: 18.5pt; margin: 4mm 0 1.5mm; color: #2c3e50; }
+section.chapter { page-break-before: always; }
+.num { color: var(--muted); margin-left: 3mm; }
+
+/* TOC */
+.toc ol { list-style: none; padding: 0; margin: 0; }
+.toc li { padding: 1.6mm 0; border-bottom: 1px dotted var(--rule); font-size: 18pt; }
+.toc li ol li { border: 0; padding: 0.6mm 9mm 0.6mm 0; font-size: 16pt; color: var(--muted); }
+
+/* Abstract */
+.abstract { background: var(--soft); border-right: 4px solid var(--accent); padding: 4mm 6mm; margin-bottom: 4mm; }
+.keywords { font-size: 16pt; color: var(--muted); }
+.keywords b { color: var(--ink); }
+
+ul, ol { margin: 0 0 0.6em; padding-right: 7mm; padding-left: 0; }
+li { margin-bottom: 0.25em; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; margin: 3mm 0 2mm; font-size: 15pt; page-break-inside: avoid; }
+th, td { border: 1px solid var(--rule); padding: 1.6mm 2.6mm; text-align: right; vertical-align: top; }
+th { background: var(--accent); color: #fff; font-weight: 700; }
+tr:nth-child(even) td { background: #f7f9fb; }
+td.c, th.c { text-align: center; }
+.keep { page-break-inside: avoid; break-inside: avoid; }
+.caption { text-align: center; font-size: 14.5pt; color: var(--muted); margin: 1mm 0 5mm; }
+
+/* Figures and code */
+figure { margin: 4mm 0 2mm; page-break-inside: avoid; }
+figure svg { display: block; margin: 0 auto; }
+pre {
+  direction: ltr; text-align: left; font-family: Consolas, "Courier New", monospace; font-size: 9.5pt;
+  line-height: 1.45; background: #f5f7f9; border: 1px solid var(--rule); border-left: 4px solid var(--accent);
+  padding: 3mm 4mm; margin: 3mm 0; white-space: pre-wrap; page-break-inside: avoid;
+}
+.note { background: #fff8e6; border-right: 4px solid #d79b00; padding: 3mm 5mm; margin: 3mm 0; font-size: 16pt; }
+
+/* References */
+.refs { direction: ltr; text-align: left; font-family: "Segoe UI", sans-serif; font-size: 10.5pt; line-height: 1.5; padding-left: 7mm; padding-right: 0; }
+.refs li { margin-bottom: 2.2mm; }
+.refs i { font-style: italic; }
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<div class="cover">
+  <div>
+    <div class="kicker">تقرير مشروع تقني</div>
+<!--noen-->    <h1 dir="ltr" style="text-align:right">ScholarPath</h1><!--/noen-->
+    <div class="sub">منصة ذكية متعددة الوكلاء لاكتشاف الفرص التعليمية الملائمة للخلفية الأكاديمية والأهداف المهنية للطلاب، مبنية على <span class="en n">LangGraph</span></div>
+  </div>
+  <div class="meta">
+    <div>النسخة الأولية القابلة للتشغيل: <span class="en n">Minimum Viable Product</span></div>
+    <div>نوفمبر 2026</div>
+  </div>
+</div>
+
+<!-- ============ TOC ============ -->
+<section class="toc">
+  <h1>فهرس المحتويات</h1>
+  <ol>
+    <li>الملخص</li>
+    <li>1. المقدمة</li>
+    <li>2. مشكلة البحث</li>
+    <li>3. الدراسة المرجعية</li>
+    <li>4. الأعمال المشابهة</li>
+    <li>5. التحقيق
+      <ol>
+        <li>5.1 المعمارية العامة</li>
+        <li>5.2 الحالة المشتركة وعقود البيانات</li>
+        <li>5.3 الوكيل الأول: <span class="en n">Reader</span></li>
+        <li>5.4 الوكيل الثاني: <span class="en n">Searcher</span></li>
+        <li>5.5 الوكيل الثالث: <span class="en n">Reporter</span></li>
+        <li>5.6 التنسيق عبر <span class="en n">LangGraph</span></li>
+        <li>5.7 الواجهات والاختبار وبنية المشروع</li>
+      </ol>
+    </li>
+    <li>6. النتائج</li>
+    <li>7. الآفاق المستقبلية</li>
+    <li>8. الخاتمة</li>
+    <li>المراجع</li>
+  </ol>
+</section>
+
+<!-- ============ ABSTRACT ============ -->
+<section class="chapter">
+  <h1>الملخص</h1>
+  <div class="abstract">
+    <p>يواجه الطلاب صعوبة متزايدة في العثور على الفرص التعليمية الملائمة لهم، من برامج جامعية ومنح دراسية وزمالات ومعسكرات تدريبية ودورات إلكترونية، وذلك بسبب تشتت المعلومات بين مصادر كثيرة، وتعقيد شروط الأهلية، وتعدد القيود الشخصية كالميزانية والبلد ونمط الدراسة. يقدم هذا التقرير مشروع <span class="en n">ScholarPath</span>، وهو نسخة أولية قابلة للتشغيل من منصة تعتمد على <span class="en n">Large Language Models</span> وتتبنى معمارية <span class="en n">Multi-Agent</span> منسقة بواسطة إطار <span class="en n">LangGraph</span>.</p>
+    <p>يتألف النظام من ثلاثة وكلاء متخصصين تخصصاً حقيقياً: وكيل القراءة <span class="en n">Reader</span> الذي يحول النص الحر الذي يكتبه الطالب إلى ملف شخصي منظم ومُتحقَّق منه، ووكيل البحث <span class="en n">Searcher</span> الذي يستخدم الأدوات <span class="en n">Tools</span> في حلقة محدودة لاستكشاف الفرص ثم يرتبها وفق نموذج تقييم شفاف، ووكيل التقرير <span class="en n">Reporter</span> الذي يكتب تقريراً إرشادياً مقيداً بما عثر عليه وكيل البحث فقط. وتربط هذه الوكلاء حافتان شرطيتان <span class="en n">Conditional Edges</span>: الأولى تطلب توضيحاً من الطالب عبر آلية <span class="en n">Human-in-the-Loop</span> عندما يكون الملف غامضاً، والثانية توسع البحث تلقائياً عندما تكون النتائج القوية قليلة.</p>
+    <p>أظهر التقييم أن النظام يعمل من البداية إلى النهاية، وأن جميع الاختبارات الآلية الثلاثين تنجح دون اتصال بالشبكة ودون مفاتيح <span class="en n">API</span>، وأن آلية <span class="en n">Grounding</span> تمنع ظهور أي فرصة مختلَقة في التقرير النهائي. كما يناقش التقرير حدود النسخة الحالية، ومنها اعتماد البيانات على كتالوج تجريبي وعدم اختبار النموذج اللغوي الحقيقي بعد، ويقترح آفاقاً لتطوير المنصة.</p>
+  </div>
+  <p class="keywords"><b>الكلمات المفتاحية:</b> <span class="en n">Multi-Agent Systems</span>، <span class="en n">LangGraph</span>، <span class="en n">Large Language Models</span>، <span class="en n">Recommender Systems</span>، <span class="en n">Tool Use</span>، <span class="en n">Grounding</span>، <span class="en n">Human-in-the-Loop</span>، التوجيه الأكاديمي.</p>
+</section>
+
+<!-- ============ 1. INTRODUCTION ============ -->
+<section class="chapter">
+  <h1><span class="num">1.</span>المقدمة</h1>
+
+  <h2>1.1 السياق العام</h2>
+  <p>أصبح الوصول إلى التعليم العالي والتدريب المهني أوسع من أي وقت مضى؛ إذ تتاح للطالب اليوم آلاف البرامج الجامعية والمنح الممولة والدورات الإلكترونية حول العالم. غير أن هذه الوفرة نفسها تولد مشكلة معاكسة، وهي صعوبة الاختيار. فالمعلومات موزعة على مواقع الجامعات والجهات المانحة ومنصات التعلم، ولكل فرصة شروط أهلية ومواعيد وتكاليف مختلفة، وكثيراً ما يفتقر الطالب، خصوصاً في البلدان النامية، إلى مرشد أكاديمي يساعده على مطابقة هذه الفرص مع وضعه الفعلي.</p>
+  <p>وفي الوقت نفسه، شهدت السنوات الأخيرة تطوراً كبيراً في <span class="en n">Large Language Models</span>، وانتقل استخدامها من مجرد توليد النصوص إلى بناء وكلاء <span class="en n">Agents</span> قادرين على التخطيط واستدعاء الأدوات والتعاون فيما بينهم. ويفتح هذا التطور الباب أمام أنظمة إرشاد ذكية تفهم وصف الطالب بلغته الطبيعية، وتبحث نيابة عنه، وتشرح له أسباب كل توصية.</p>
+
+  <h2>1.2 أهداف المشروع</h2>
+  <ul>
+    <li>بناء نسخة أولية قابلة للتشغيل والاختبار، لا مجرد تصور معماري أو شيفرة توضيحية.</li>
+    <li>توظيف إطار <span class="en n">LangGraph</span> لتنسيق ثلاثة وكلاء رئيسيين بالضبط، لكل منهم مسؤولية ومدخلات ومخرجات وأدوات وتعليمات <span class="en n">Prompt</span> خاصة به.</li>
+    <li>ضمان أن تكون التوصيات قابلة للتفسير، وأن يكون التقرير النهائي مقيداً بالبيانات الفعلية دون اختلاق.</li>
+    <li>تصميم بنية نظيفة قابلة للتوسع، بحيث تكون إضافة وكيل رابع أو أداة بحث جديدة عملية بسيطة.</li>
+  </ul>
+
+  <h2>1.3 المساهمات</h2>
+  <p>يقدم المشروع المساهمات التالية:</p>
+  <ol>
+    <li>معمارية من ثلاثة وكلاء متمايزين من حيث نوع المخرجات والصلاحيات؛ فوكيل واحد فقط يرى النص الخام، ووكيل واحد فقط يملك أدوات، ووكيل واحد فقط يخاطب الطالب.</li>
+    <li>رسم تنسيق <span class="en n">Orchestration Graph</span> يتضمن حلقتين شرطيتين حقيقيتين: حلقة توضيح بمشاركة الإنسان، وحلقة توسيع للبحث.</li>
+    <li>نموذج تقييم شفاف من مئة نقطة يرفق بكل توصية أسبابها ومخاوفها.</li>
+    <li>آلية تحقق لاحقة <span class="en n">Post-hoc Validation</span> تمنع ورود أي فرصة غير موجودة في نتائج البحث داخل التقرير.</li>
+    <li>نموذج لغوي بديل يعمل دون اتصال <span class="en n">Offline Model</span> يجعل النظام كله قابلاً للاختبار الآلي دون شبكة أو تكلفة.</li>
+  </ol>
+
+  <h2>1.4 هيكل التقرير</h2>
+  <p>يعرض الفصل الثاني مشكلة البحث وأسئلته، ويستعرض الفصل الثالث الأسس النظرية في مجالات الوكلاء الذكية وأنظمة التوصية، ويقارن الفصل الرابع المشروع بالأعمال المشابهة. ثم يفصل الفصل الخامس عملية التحقيق والتنفيذ، ويعرض الفصل السادس النتائج ويناقشها، ويختم الفصل السابع بالآفاق المستقبلية.</p>
+</section>
+
+<!-- ============ 2. PROBLEM ============ -->
+<section class="chapter">
+  <h1><span class="num">2.</span>مشكلة البحث</h1>
+
+  <h2>2.1 صياغة المشكلة</h2>
+  <p>تتمثل المشكلة في الفجوة بين ما يعرفه الطالب عن نفسه، وهو معرفة غير منظمة يعبر عنها بلغة طبيعية، وبين ما تتطلبه قواعد بيانات الفرص التعليمية، وهي سمات منظمة كالمستوى الدراسي والمعدل والتخصص والبلد والتكلفة. ويؤدي غياب الربط الذكي بين الطرفين إلى ثلاث نتائج سلبية: إهدار وقت الطالب في بحث يدوي مشتت، وتفويت فرص ملائمة لم يعلم بها، والتقدم إلى فرص لا تنطبق عليه شروطها.</p>
+  <p>وعند محاولة سد هذه الفجوة بنموذج لغوي واحد، تظهر مشكلة ثانية لا تقل خطورة، وهي ظاهرة <span class="en n">Hallucination</span>؛ إذ قد يذكر النموذج منحاً أو برامج غير موجودة، أو يخترع مواعيد ومبالغ غير صحيحة. وفي سياق قرار تعليمي مصيري، فإن توصية مختلَقة أسوأ من غياب التوصية.</p>
+
+  <h2>2.2 أسئلة البحث</h2>
+  <ol>
+    <li><b>س1:</b> كيف يمكن تقسيم مهمة الإرشاد التعليمي بين عدة وكلاء بحيث يكون لكل وكيل تخصص حقيقي، لا مجرد استدعاءات متتالية لنموذج لغوي بأسماء مختلفة؟</li>
+    <li><b>س2:</b> كيف يمكن ضمان أن تكون التوصيات قابلة للتفسير، وأن يخلو التقرير النهائي من الفرص المختلَقة؟</li>
+    <li><b>س3:</b> كيف يتعامل النظام مع المدخلات الناقصة أو الغامضة، ومع قلة النتائج الملائمة، دون أن يفشل أو يقدم نتائج ضعيفة بصمت؟</li>
+    <li><b>س4:</b> كيف يمكن بناء نظام يعتمد على نماذج لغوية ويظل مع ذلك قابلاً للاختبار الآلي الحتمي <span class="en n">Deterministic Testing</span>؟</li>
+  </ol>
+
+  <h2>2.3 المتطلبات والقيود</h2>
+  <div class="keep"><table>
+    <tr><th style="width:32%">المتطلب</th><th>الوصف</th></tr>
+    <tr><td>ثلاثة وكلاء بالضبط</td><td>ينسقها <span class="en n">LangGraph</span>، ولكل منها <span class="en n">Schema</span> وأدوات و<span class="en n">Prompt</span> مستقلة.</td></tr>
+    <tr><td>التشغيل الكامل</td><td>أمر واحد من سطر الأوامر ينتج ملف تقرير.</td></tr>
+    <tr><td>قابلية الاختبار دون اتصال</td><td>تنجح جميع الاختبارات دون مفاتيح <span class="en n">API</span> ودون شبكة.</td></tr>
+    <tr><td>البساطة</td><td>لا قاعدة بيانات متجهية، ولا نظام مصادقة، ولا واجهة أمامية معقدة في هذه المرحلة.</td></tr>
+    <tr><td>قابلية التوسع</td><td>إضافة وكيل أو أداة جديدة تتم بملف واحد تقريباً.</td></tr>
+  </table>
+
+  <h2>2.4 نطاق العمل وحدوده</h2>
+  <p>يقتصر نطاق هذه النسخة على إثبات صحة المعمارية وعملها من البداية إلى النهاية. لذلك تعتمد على كتالوج تجريبي من ثلاثين فرصة، مع إمكانية اختيارية للبحث في الويب عبر خدمة <span class="en n">Tavily</span>. ولا تتضمن هذه النسخة حسابات المستخدمين، ولا تحديثاً آلياً للبيانات، ولا تقييماً ميدانياً مع طلاب حقيقيين.</p>
+</section>
+
+<!-- ============ 3. LITERATURE ============ -->
+<section class="chapter">
+  <h1><span class="num">3.</span>الدراسة المرجعية</h1>
+
+  <h2>3.1 النماذج اللغوية الكبيرة والوكلاء الذكية</h2>
+  <p>يقصد بالوكيل المبني على نموذج لغوي <span class="en n">LLM-based Agent</span> نظامٌ يستخدم النموذج اللغوي محركاً للاستدلال، ويضيف إليه مكونات للتخطيط والذاكرة واستخدام الأدوات والتفاعل مع البيئة. وقد صنف المسح الذي أجراه <span class="en n">Wang</span> وزملاؤه [1] هذه الأنظمة وفق أربعة أبعاد: الملف الشخصي للوكيل <span class="en n">Profile</span>، والذاكرة <span class="en n">Memory</span>، والتخطيط <span class="en n">Planning</span>، والفعل <span class="en n">Action</span>. ويتبنى مشروعنا هذا التصور، إذ يمتلك كل وكيل ملفاً محدداً عبر <span class="en n">Prompt</span> خاص، ويتشارك الوكلاء ذاكرة واحدة هي الحالة المشتركة <span class="en n">State</span>، ويمتلك وكيل البحث وحده القدرة على الفعل عبر الأدوات.</p>
+
+  <h2>3.2 استخدام الأدوات وأسلوب <span class="en n">ReAct</span></h2>
+  <p>اقترح <span class="en n">Yao</span> وزملاؤه أسلوب <span class="en n">ReAct</span> [2] الذي يدمج الاستدلال <span class="en n">Reasoning</span> والفعل <span class="en n">Acting</span> في حلقة واحدة؛ إذ يفكر النموذج، ثم يستدعي أداة، ثم يلاحظ نتيجتها، ثم يقرر الخطوة التالية. وأظهر <span class="en n">Schick</span> وزملاؤه في عمل <span class="en n">Toolformer</span> [3] أن النماذج اللغوية قادرة على تعلم متى تستدعي واجهات خارجية وكيف. ويطبق وكيل البحث في مشروعنا هذا النمط تطبيقاً مباشراً، مع فرض حد أقصى لعدد الاستدعاءات قدره ستة، وذلك لضمان التوقف والتحكم في التكلفة.</p>
+
+  <h2>3.3 الأنظمة متعددة الوكلاء</h2>
+  <p>تقوم الأنظمة متعددة الوكلاء <span class="en n">Multi-Agent Systems</span> على توزيع المهمة المعقدة على وكلاء متخصصين يتعاونون فيما بينهم. ومن أبرز الأطر في هذا المجال <span class="en n">AutoGen</span> [4] الذي يعتمد على المحادثة بين الوكلاء، و<span class="en n">MetaGPT</span> [5] الذي يحاكي أدوار فريق تطوير برمجيات وفق إجراءات تشغيل قياسية. ويلاحظ أن كثيراً من التطبيقات العملية تقع في فخ تسمية استدعاءات متتالية لنموذج واحد بأسماء وكلاء مختلفة دون تمايز حقيقي. ولتجنب ذلك، يعتمد مشروعنا معيار تمايز صارماً يقوم على اختلاف المدخلات والمخرجات والصلاحيات، وهو ما يتفق مع مبدأ فصل الأدوار في <span class="en n">MetaGPT</span>.</p>
+
+  <h2>3.4 أنظمة التوصية في التعليم</h2>
+  <p>تصنف أنظمة التوصية <span class="en n">Recommender Systems</span> تقليدياً إلى ثلاثة أنواع رئيسية [6]: التصفية التعاونية <span class="en n">Collaborative Filtering</span> التي تعتمد على سلوك مستخدمين متشابهين، والتوصية المعتمدة على المحتوى <span class="en n">Content-based</span> التي تطابق خصائص العنصر مع اهتمامات المستخدم [7]، والتوصية المعتمدة على المعرفة <span class="en n">Knowledge-based</span> التي تستخدم قواعد وقيوداً صريحة. ويرى <span class="en n">Burke</span> [8] أن الأنظمة الهجينة <span class="en n">Hybrid</span> تجمع مزايا هذه الأنواع وتعالج عيوبها. أما في سياق التعليم، فقد بين <span class="en n">Manouselis</span> وزملاؤه [9] أن التوصية التعليمية تختلف عن التوصية التجارية بأهمية الأهداف التعليمية والسياق والمتطلبات المسبقة.</p>
+  <p>ويعد نموذج التقييم في مشروعنا نموذجاً هجيناً يجمع بين التطابق المعتمد على المحتوى في التخصص والاهتمامات، والقواعد المعتمدة على المعرفة في المستوى الدراسي والمعدل والميزانية والموقع. ويتجنب المشروع التصفية التعاونية في هذه المرحلة لعدم توفر بيانات سلوكية عن المستخدمين، وهي المشكلة المعروفة بـ <span class="en n">Cold Start</span>.</p>
+
+  <h2>3.5 الهلوسة والتأسيس على البيانات</h2>
+  <p>عرف المسح الذي أجراه <span class="en n">Ji</span> وزملاؤه [10] الهلوسة بأنها توليد محتوى غير مخلص للمصدر أو غير صحيح واقعياً، وعدها من أكبر عوائق استخدام النماذج اللغوية في التطبيقات الحساسة. ومن أشهر أساليب الحد منها أسلوب <span class="en">Retrieval-Augmented Generation</span> الذي قدمه <span class="en n">Lewis</span> وزملاؤه [11]، ويقوم على تزويد النموذج بمعلومات مسترجعة من مصدر خارجي قبل التوليد. ويطبق مشروعنا مبدأً مشابهاً، إذ لا يكتب وكيل التقرير إلا انطلاقاً من الفرص التي استرجعها وكيل البحث. ويضيف المشروع طبقة ثانية هي التحقق اللاحق، إذ يفحص النظام التقرير بعد توليده ويرفضه إذا ذكر فرصة غير موجودة.</p>
+
+  <h2>3.6 مشاركة الإنسان في الحلقة</h2>
+  <p>تؤكد إرشادات التفاعل بين الإنسان والذكاء الاصطناعي التي وضعها <span class="en n">Amershi</span> وزملاؤه [12] أهمية أن يطلب النظام توضيحاً عند الشك، وأن يجعل حدود قدرته واضحة للمستخدم. ويجسد مشروعنا ذلك عبر آلية <span class="en n">Human-in-the-Loop</span>: فعندما تقل ثقة وكيل القراءة عن عتبة محددة، أو يغيب التخصص أو الهدف المهني، يتوقف الرسم مؤقتاً ويطرح على الطالب سؤالاً محدداً بدلاً من التخمين.</p>
+
+  <h2>3.7 إطار <span class="en n">LangGraph</span></h2>
+  <p>إطار <span class="en n">LangGraph</span> [13] مكتبة مفتوحة المصدر من <span class="en n">LangChain</span> لبناء تطبيقات الوكلاء على هيئة رسم بياني ذي حالة <span class="en n">Stateful Graph</span>. ويقوم على أربعة مفاهيم أساسية يوظفها مشروعنا جميعاً:</p>
+  <ul>
+    <li><b><span class="en n">StateGraph</span>:</b> رسم تمثل عقده <span class="en n">Nodes</span> دوالَّ تقرأ الحالة المشتركة وتعيد تحديثات عليها.</li>
+    <li><b><span class="en n">Conditional Edges</span>:</b> حواف تقرر العقدة التالية بناءً على محتوى الحالة، مما يسمح بالحلقات والتفرعات.</li>
+    <li><b><span class="en n">Checkpointer</span>:</b> آلية تحفظ الحالة بعد كل خطوة، مما يتيح الإيقاف والاستئناف.</li>
+    <li><b><span class="en n">interrupt</span>:</b> دالة توقف التنفيذ لانتظار مدخلات بشرية، ثم يستأنف التنفيذ بعدها عبر <span class="en n">Command</span>.</li>
+  </ul>
+  <p>ويتميز هذا الإطار عن أطر المحادثة الحرة بين الوكلاء بأنه يجعل مسار التنفيذ صريحاً وقابلاً للاختبار، وهو ما يناسب متطلبات هذا المشروع.</p>
+</section>
+
+<!-- ============ 4. RELATED WORK ============ -->
+<section class="chapter">
+  <h1><span class="num">4.</span>الأعمال المشابهة</h1>
+  <p>يمكن تقسيم الحلول القائمة لمشكلة اكتشاف الفرص التعليمية إلى أربع فئات رئيسية:</p>
+
+  <h3>4.1 محركات البحث عن المنح</h3>
+  <p>تعتمد منصات مثل <span class="en n">Fastweb</span> و<span class="en n">Scholarships.com</span> على استمارة ملف شخصي يملؤها الطالب عبر حقول محددة مسبقاً، ثم تطابقها مع قاعدة بيانات المنح. وتتميز هذه المنصات باتساع قواعد بياناتها، لكنها تتطلب إدخالاً منظماً، ولا تفهم الوصف الحر، ولا تشرح عادة سبب ملاءمة كل منحة.</p>
+
+  <h3>4.2 أدلة البرامج الجامعية</h3>
+  <p>تقدم منصات مثل <span class="en n">Mastersportal</span> من <span class="en n">StudyPortals</span> محركات بحث للبرامج الجامعية مع مرشحات <span class="en n">Filters</span> حسب البلد والتخصص والتكلفة. وهي أدوات قوية لمن يعرف بدقة ما يبحث عنه، لكنها تترك عبء الترتيب والمقارنة على الطالب، وتفصل عادة بين البحث عن البرامج والبحث عن التمويل.</p>
+
+  <h3>4.3 توصيات منصات التعلم الإلكتروني</h3>
+  <p>توصي منصات مثل <span class="en n">Coursera</span> و<span class="en n">edX</span> بدورات اعتماداً على سجل التصفح والتسجيل داخل المنصة نفسها. وتنحصر توصياتها في كتالوجها الخاص، فلا تقترح منحة جامعية أو برنامجاً خارجياً.</p>
+
+  <h3>4.4 المساعدات الحوارية العامة</h3>
+  <p>يمكن للطالب أن يسأل مساعداً حوارياً عاماً مبنياً على نموذج لغوي عن الفرص المناسبة له. وتتميز هذه المساعدات بفهم اللغة الطبيعية وبالمرونة، لكنها معرضة لخطر الهلوسة، ولا تقدم ترتيباً شفافاً قابلاً للتكرار، ولا يمكن التحقق من مصادر توصياتها دائماً.</p>
+
+  <h2>4.5 مقارنة وتحديد الفجوة</h2>
+  <table>
+    <tr>
+      <th style="width:26%">المعيار</th>
+      <th class="c">محركات المنح</th>
+      <th class="c">أدلة البرامج</th>
+      <th class="c">منصات <span class="en n">MOOC</span></th>
+      <th class="c">المساعد العام</th>
+      <th class="c"><span class="en n">ScholarPath</span></th>
+    </tr>
+    <tr><td>إدخال بلغة طبيعية حرة</td><td class="c">لا</td><td class="c">لا</td><td class="c">لا</td><td class="c">نعم</td><td class="c">نعم</td></tr>
+    <tr><td>تغطية أنواع متعددة من الفرص</td><td class="c">جزئياً</td><td class="c">جزئياً</td><td class="c">لا</td><td class="c">نعم</td><td class="c">نعم</td></tr>
+    <tr><td>ترتيب مفسَّر بأسباب ومخاوف</td><td class="c">نادراً</td><td class="c">لا</td><td class="c">لا</td><td class="c">غير منتظم</td><td class="c">نعم</td></tr>
+    <tr><td>ضمان عدم الاختلاق</td><td class="c">نعم</td><td class="c">نعم</td><td class="c">نعم</td><td class="c">لا</td><td class="c">نعم</td></tr>
+    <tr><td>طلب توضيح عند الغموض</td><td class="c">لا</td><td class="c">لا</td><td class="c">لا</td><td class="c">أحياناً</td><td class="c">نعم</td></tr>
+    <tr><td>خطة عمل مخصصة</td><td class="c">لا</td><td class="c">لا</td><td class="c">لا</td><td class="c">نعم</td><td class="c">نعم</td></tr>
+  </table>
+  <p class="caption">جدول 1: مقارنة نوعية بين فئات الحلول القائمة ومشروع <span class="en n">ScholarPath</span>، اعتماداً على الوظائف المعلنة لكل فئة.</p></div>
+  <p>يتضح من المقارنة أن الحلول التقليدية موثوقة البيانات لكنها جامدة في الإدخال وضعيفة في التفسير، بينما المساعدات الحوارية مرنة لكنها غير موثوقة. وتكمن الفجوة التي يسعى المشروع إلى سدها في الجمع بين مرونة النماذج اللغوية في فهم الطالب، وموثوقية البيانات المنظمة، وشفافية الترتيب.</p>
+</section>
+
+<!-- ============ 5. IMPLEMENTATION ============ -->
+<section class="chapter">
+  <h1><span class="num">5.</span>التحقيق</h1>
+  <p>يعرض هذا الفصل كيفية تحويل التصور السابق إلى نظام يعمل فعلياً. وقد كُتب المشروع بلغة <span class="en n">Python 3.12</span>، وتلخص الفقرة 5.7 التقنيات المستخدمة فيه.</p>
+
+  <h2>5.1 المعمارية العامة</h2>
+  <p>يوضح الشكل 1 مسار التنفيذ في الرسم. يبدأ التنفيذ من وكيل القراءة، ثم يمر بوكيل البحث، وينتهي بوكيل التقرير، مع حلقتين شرطيتين.</p>
+  <figure>
+    <svg width="640" height="250" viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg" direction="ltr" font-family="Segoe UI, sans-serif">
+      <defs>
+        <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#1f4e79"/>
+        </marker>
+      </defs>
+      <g font-size="13">
+        <!-- START -->
+        <circle cx="35" cy="125" r="22" fill="#e8eef4" stroke="#1f4e79"/>
+        <text x="35" y="129" text-anchor="middle" fill="#1f4e79" font-size="11">START</text>
+        <!-- reader -->
+        <rect x="90" y="100" width="110" height="50" rx="8" fill="#1f4e79"/>
+        <text x="145" y="122" text-anchor="middle" fill="#fff" font-weight="600">Reader</text>
+        <text x="145" y="139" text-anchor="middle" fill="#cfe0f0" font-size="10.5">StudentProfile</text>
+        <!-- clarify -->
+        <rect x="95" y="10" width="100" height="40" rx="20" fill="#fff8e6" stroke="#d79b00"/>
+        <text x="145" y="35" text-anchor="middle" fill="#8a6200">clarify</text>
+        <!-- searcher -->
+        <rect x="270" y="100" width="120" height="50" rx="8" fill="#1f4e79"/>
+        <text x="330" y="122" text-anchor="middle" fill="#fff" font-weight="600">Searcher</text>
+        <text x="330" y="139" text-anchor="middle" fill="#cfe0f0" font-size="10.5">Opportunities</text>
+        <!-- tools -->
+        <rect x="270" y="195" width="120" height="40" rx="6" fill="#eef3f8" stroke="#8aa4bd" stroke-dasharray="4 3"/>
+        <text x="330" y="213" text-anchor="middle" fill="#2c3e50" font-size="10.5">catalog / web</text>
+        <text x="330" y="227" text-anchor="middle" fill="#5d6670" font-size="10">Tools</text>
+        <!-- reporter -->
+        <rect x="460" y="100" width="110" height="50" rx="8" fill="#1f4e79"/>
+        <text x="515" y="122" text-anchor="middle" fill="#fff" font-weight="600">Reporter</text>
+        <text x="515" y="139" text-anchor="middle" fill="#cfe0f0" font-size="10.5">Markdown report</text>
+        <!-- END -->
+        <circle cx="610" cy="125" r="22" fill="#e8eef4" stroke="#1f4e79"/>
+        <text x="610" y="129" text-anchor="middle" fill="#1f4e79" font-size="11">END</text>
+      </g>
+      <g stroke="#1f4e79" stroke-width="1.6" fill="none" marker-end="url(#ar)">
+        <line x1="57" y1="125" x2="88" y2="125"/>
+        <line x1="200" y1="125" x2="268" y2="125"/>
+        <line x1="390" y1="125" x2="458" y2="125"/>
+        <line x1="570" y1="125" x2="586" y2="125"/>
+        <path d="M128,100 L128,52"/>
+        <path d="M162,52 L162,98"/>
+        <path d="M360,100 C380,55 290,55 305,98"/>
+      </g>
+      <g stroke="#8aa4bd" stroke-width="1.2" stroke-dasharray="3 3" fill="none">
+        <line x1="330" y1="150" x2="330" y2="195"/>
+      </g>
+      <g font-size="10" fill="#5d6670">
+        <text x="20" y="80">profile unclear</text>
+        <text x="20" y="93">+ interactive</text>
+        <text x="168" y="80">answer</text>
+        <text x="205" y="117">profile ok</text>
+        <text x="300" y="50">fewer than 3 strong</text>
+        <text x="395" y="117">enough</text>
+      </g>
+    </svg>
+    <p class="caption">شكل 1: رسم التنسيق في <span class="en n">LangGraph</span>. المستطيلات الزرقاء هي الوكلاء الثلاثة، والعقدة <span class="en n">clarify</span> خطوة بشرية وليست وكيلاً.</p>
+  </figure>
+  <p>ويقوم التصميم على مبدأ فصل الصلاحيات، وهو المعيار الذي يضمن التمايز الحقيقي بين الوكلاء:</p>
+  <div class="keep"><table>
+    <tr><th style="width:18%">الوكيل</th><th style="width:22%">المدخلات</th><th style="width:24%">المخرجات</th><th style="width:14%">الأدوات</th><th>ما لا يفعله أبداً</th></tr>
+    <tr><td><span class="en n">Reader</span></td><td>نص الطالب الخام</td><td><span class="en n">StudentProfile</span> منظم مع الحقول الناقصة ودرجة الثقة</td><td>لا يوجد</td><td>البحث أو كتابة نص موجه للطالب</td></tr>
+    <tr><td><span class="en n">Searcher</span></td><td>الملف المنظم</td><td>قائمة <span class="en n">Opportunity</span> مرتبة وسجل بحث</td><td>الكتالوج والويب</td><td>مخاطبة الطالب</td></tr>
+    <tr><td><span class="en n">Reporter</span></td><td>الملف والفرص المرتبة وسجل البحث</td><td>تقرير <span class="en n">Markdown</span> محفوظ في ملف</td><td>لا يوجد</td><td>البحث أو ذكر فرصة غير موجودة</td></tr>
+  </table>
+  <p class="caption">جدول 2: توزيع المسؤوليات والصلاحيات بين الوكلاء الثلاثة.</p></div>
+
+  <h2>5.2 الحالة المشتركة وعقود البيانات</h2>
+  <p>تنتقل البيانات بين الوكلاء عبر حالة مشتركة واحدة تسمى <span class="en n">ScholarPathState</span>، وهي من نوع <span class="en n">TypedDict</span>. ولا يمرر أي وكيل قاموساً عاماً غير محدد البنية، بل تمر جميع البيانات عبر نماذج <span class="en n">Pydantic</span> محددة الأنواع، أهمها:</p>
+  <ul>
+    <li><b><span class="en n">StudentProfile</span>:</b> المستوى الدراسي، والتخصص، والمعدل على مقياس من أربعة، والمهارات، والاهتمامات، والهدف المهني، والقيود، إضافة إلى قائمة الحقول الناقصة <span class="en n">missing_fields</span> ودرجة الثقة <span class="en n">confidence</span>.</li>
+    <li><b><span class="en n">Constraints</span>:</b> البلدان المفضلة، والحد الأقصى للميزانية، والحاجة إلى التمويل، واللغات، ونمط الدراسة، والدوام الجزئي.</li>
+    <li><b><span class="en n">Opportunity</span>:</b> اسم الفرصة ومقدمها ونوعها، وهو واحد من خمسة: <span class="en n">degree</span> أو <span class="en n">scholarship</span> أو <span class="en n">fellowship</span> أو <span class="en n">bootcamp</span> أو <span class="en n">course</span>، إضافة إلى الرابط والبلد والموعد والتكلفة ودرجة التطابق <span class="en n">match_score</span> والأسباب <span class="en n">match_reasons</span> والمخاوف <span class="en n">concerns</span>.</li>
+    <li><b><span class="en n">SearchLog</span>:</b> سجل بكل استعلام نُفذ، ونتائجه، وأخطائه، وما إذا كان البحث قد وُسِّع.</li>
+  </ul>
+  <p>وتضمن هذه العقود أن أي خلل في مخرجات النموذج اللغوي يُكتشف فور حدوثه عند التحقق من النوع، بدلاً من أن ينتشر بصمت إلى المراحل اللاحقة.</p>
+
+  <h2>5.3 الوكيل الأول: <span class="en n">Reader</span></h2>
+  <p>يستقبل هذا الوكيل نص الطالب الحر، ويستخدم خاصية <span class="en n">Structured Output</span> في النموذج اللغوي لاستخراج ملف منظم. ويُلزَم النموذج عبر الـ <span class="en n">Prompt</span> بعدم تخمين أي قيمة غير مذكورة صراحة. وبعد استدعاء النموذج، تطبق طبقة تحقق قائمة على القواعد <span class="en n">Rule-based Validation</span> لا يُعتمد فيها على النموذج، وتشمل:</p>
+  <ul>
+    <li><b>توحيد المعدل:</b> يُحوَّل أي معدل إلى مقياس من أربعة. فمعدل 82 من 100 يصبح 3.28، ومعدل 8.5 من 10 يصبح 3.4. وإذا لم يُذكر المقياس، يستنتجه النظام من قيمة المعدل.</li>
+    <li><b>فحص المعقولية:</b> تُحذف سنة التخرج إذا وقعت خارج نطاق معقول.</li>
+    <li><b>إزالة التكرار:</b> تُوحَّد المهارات والبلدان واللغات المكررة.</li>
+    <li><b>حساب الحقول الناقصة:</b> يُحسب بالشيفرة لا بالنموذج، لضمان الدقة.</li>
+  </ul>
+
+  <h2>5.4 الوكيل الثاني: <span class="en n">Searcher</span></h2>
+  <p>هو الوكيل الوحيد الذي يملك أدوات، وهما أداتان معرّفتان بمزخرف <span class="en n">tool</span> في <span class="en n">LangChain</span>:</p>
+  <ul>
+    <li><b><span class="en n">search_local_catalog</span>:</b> بحث بالكلمات المفتاحية في كتالوج محلي من ثلاثين فرصة، مع مرشحات اختيارية للنوع والبلد والتكلفة والدراسة عن بعد.</li>
+    <li><b><span class="en n">search_web</span>:</b> بحث في الويب عبر <span class="en n">Tavily</span>، ولا يُربط بالوكيل إلا عند توفر مفتاح، ويُسجَّل غيابه في سجل البحث.</li>
+  </ul>
+  <p>يعمل الوكيل في حلقة على نمط <span class="en n">ReAct</span>؛ فيخطط النموذج من ثلاثة إلى خمسة استعلامات مستمدة من الملف، ويستدعي الأدوات، ويقرأ ملخص النتائج، ثم يقرر الاستمرار أو التوقف، بحد أقصى ستة استدعاءات. وإذا فشلت أداة ما، يُسجَّل الخطأ في الحالة دون أن ينهار الرسم. ثم يرتب الوكيل النتائج التي أعادتها الأدوات فقط، بعد إزالة المكرر منها، وفق نموذج التقييم المبين في الجدول 3.</p>
+  <div class="keep"><table>
+    <tr><th style="width:28%">المكوّن</th><th class="c" style="width:12%">الوزن</th><th>منطق التقييم</th></tr>
+    <tr><td>الصلة بالتخصص والأهداف</td><td class="c">40</td><td>تطابق مجالات الفرصة مع تخصص الطالب واهتماماته ومهاراته وهدفه المهني.</td></tr>
+    <tr><td>المستوى الدراسي</td><td class="c">20</td><td>هل الفرصة مفتوحة لمستوى الطالب الحالي؟</td></tr>
+    <tr><td>التكلفة والتمويل</td><td class="c">20</td><td>الفرص الممولة والمجانية تنال الدرجة الكاملة، وتُخصم النقاط إذا تجاوزت التكلفة الميزانية أو احتاج الطالب إلى تمويل.</td></tr>
+    <tr><td>الموقع ونمط الدراسة</td><td class="c">10</td><td>تطابق البلد المفضل أو إتاحة الدراسة عن بعد.</td></tr>
+    <tr><td>المعدل</td><td class="c">10</td><td>مقارنة معدل الطالب بالحد الأدنى المطلوب إن وُجد.</td></tr>
+  </table>
+  <p class="caption">جدول 3: مكونات نموذج التقييم وأوزانها، والمجموع مئة نقطة.</p></div>
+  <p>وقد اختير أن يكون التقييم حتمياً قائماً على القواعد لا على النموذج اللغوي، لثلاثة أسباب: أن الترتيب يصبح قابلاً للتكرار والاختبار، وأن كل نقطة في الدرجة يمكن تفسيرها بسبب أو مخاوف محددة، وأن تكلفة التشغيل تنخفض. وتُعد الفرصة قوية إذا بلغت درجتها خمسين نقطة فأكثر.</p>
+
+  <h2>5.5 الوكيل الثالث: <span class="en n">Reporter</span></h2>
+  <p>يكتب هذا الوكيل تقريراً بصيغة <span class="en n">Markdown</span> ذا بنية ثابتة: ملخص الملف، وأفضل الفرص مع أسباب ملاءمتها ومخاوفها وموعدها والخطوة التالية العملية، ثم الثغرات في الملف، وخطة عمل على مدى ثلاثين وستين وتسعين يوماً، وأخيراً المصادر والقيود. ولضمان التأسيس على البيانات، تُطبق الخوارزمية التالية:</p>
+  <ol>
+    <li>يولد النموذج التقرير انطلاقاً من بيانات بصيغة <span class="en n">JSON</span> تحتوي الفرص المرتبة فقط.</li>
+    <li>يستخرج النظام جميع عناوين الفرص من المستوى الثالث في التقرير، ويتحقق من وجود الأقسام الإلزامية الخمسة.</li>
+    <li>إذا ورد اسم غير موجود في نتائج البحث، أو نقص قسم، يُعاد التوليد مرة واحدة مع رسالة تصحيح تذكر الأخطاء والأسماء المسموح بها.</li>
+    <li>إذا فشل التحقق مرة ثانية، يُرفع خطأ صريح <span class="en n">ReportGroundingError</span> ولا يُحفظ أي تقرير، لأن الفشل الصريح أفضل من تقرير مضلل.</li>
+  </ol>
+
+  <h2>5.6 التنسيق عبر <span class="en n">LangGraph</span></h2>
+  <p>يُبنى الرسم في دالة واحدة هي <span class="en n">build_graph</span>، ويوضح المقطع التالي جوهرها:</p>
+<pre>graph = StateGraph(ScholarPathState)
+graph.add_node("reader", make_reader(llm))
+graph.add_node("clarify", clarify)              # human-in-the-loop, not an agent
+graph.add_node("searcher", make_searcher(llm, tools))
+graph.add_node("reporter", make_reporter(llm))
+
+graph.add_edge(START, "reader")
+graph.add_conditional_edges("reader", route_after_reader, ["clarify", "searcher"])
+graph.add_edge("clarify", "reader")
+graph.add_conditional_edges("searcher", route_after_search, ["searcher", "reporter"])
+graph.add_edge("reporter", END)
+return graph.compile(checkpointer=default_checkpointer())</pre>
+  <ul>
+    <li><b>الحافة الشرطية الأولى <span class="en n">route_after_reader</span>:</b> إذا كانت الثقة أقل من 0.5، أو غاب التخصص أو الهدف المهني، وكان التشغيل تفاعلياً، ولم يُطرح سؤال من قبل، ينتقل التنفيذ إلى عقدة <span class="en n">clarify</span>. وتستدعي هذه العقدة الدالة <span class="en n">interrupt</span> لإيقاف الرسم وطرح سؤال على الطالب، ثم تضيف إجابته إلى النص الأصلي، ويعاد تشغيل وكيل القراءة.</li>
+    <li><b>الحافة الشرطية الثانية <span class="en n">route_after_search</span>:</b> إذا قل عدد الفرص القوية عن ثلاث، وكانت هذه المحاولة الأولى، يعاد تشغيل وكيل البحث في وضع موسع يزيل المرشحات ويستخدم استعلامات أعم، وتُدمج نتائجه مع نتائج المحاولة الأولى.</li>
+    <li><b>حفظ الحالة:</b> يُستخدم <span class="en n">MemorySaver</span> مع معرف خاص لكل تشغيل <span class="en n">thread_id</span>، مما يسمح باستئناف التنفيذ بعد الإيقاف. وقد سُجلت نماذج <span class="en n">Pydantic</span> صراحة في المُسلسِل <span class="en n">Serializer</span> لضمان التوافق مع الإصدارات القادمة من <span class="en n">LangGraph</span> التي ستمنع استرجاع الأنواع غير المسجلة.</li>
+  </ul>
+
+  <h2>5.7 الواجهات والاختبار وبنية المشروع</h2>
+  <h3>الواجهات</h3>
+  <ul>
+    <li><b>سطر الأوامر <span class="en n">CLI</span>:</b> الأمر <span class="en n">run</span> يحلل طالباً واحداً، ويطبع سطراً لكل عقدة، ويدعم الوضع التفاعلي. والأمر <span class="en n">demo</span> يشغل جميع الأمثلة.</li>
+    <li><b>واجهة <span class="en n">HTTP</span>:</b> نقطة نهاية واحدة <span class="en n">POST /recommend</span> تستقبل نص الطالب وتعيد الملف والفرص والتقرير بصيغة <span class="en n">JSON</span>.</li>
+  </ul>
+  <h3>القابلية للاختبار</h3>
+  <p>تُحقن النماذج اللغوية في الوكلاء حقناً <span class="en n">Dependency Injection</span> بدلاً من إنشائها داخلها. ويتيح ذلك استخدام بديلين في الاختبار: نموذج مبرمج <span class="en n">Scripted LLM</span> يعيد مخرجات محددة مسبقاً لاختبار حالات بعينها كالتقرير المختلق، ونموذج دون اتصال <span class="en n">Offline Model</span> قائم على القواعد ينفذ الواجهة نفسها التي يستخدمها <span class="en n">Claude</span>. ويعمل الثاني على المدخلات نفسها التي يتلقاها النموذج الحقيقي، فيصبح النظام كله قابلاً للتشغيل والعرض دون مفاتيح.</p>
+  <h3>التقنيات المستخدمة</h3>
+  <div class="keep"><table>
+    <tr><th style="width:30%">التقنية</th><th>الدور في المشروع</th></tr>
+    <tr><td><span class="en n">LangGraph</span></td><td>تنسيق الوكلاء، والحواف الشرطية، وحفظ الحالة، والإيقاف للتوضيح.</td></tr>
+    <tr><td><span class="en n">LangChain Core</span></td><td>الواجهة الموحدة للنماذج اللغوية وتعريف الأدوات <span class="en n">Tools</span>.</td></tr>
+    <tr><td><span class="en n">Claude</span> عبر <span class="en n">langchain-anthropic</span></td><td>النموذج اللغوي الافتراضي في التشغيل الحقيقي.</td></tr>
+    <tr><td><span class="en n">Pydantic v2</span></td><td>تعريف عقود البيانات بين الوكلاء والتحقق منها.</td></tr>
+    <tr><td><span class="en n">Tavily</span></td><td>بحث اختياري في الويب عند توفر مفتاح.</td></tr>
+    <tr><td><span class="en n">FastAPI</span></td><td>واجهة <span class="en n">HTTP</span> خفيفة للتكامل مع تطبيقات أخرى.</td></tr>
+    <tr><td><span class="en n">pytest</span> و<span class="en n">Ruff</span></td><td>الاختبار الآلي وفحص جودة الشيفرة وتنسيقها.</td></tr>
+  </table>
+  <p class="caption">جدول 4: التقنيات المستخدمة ودور كل منها.</p></div>
+  <h3>بنية المشروع</h3>
+  <p>تبلغ الشيفرة نحو 1,480 سطراً في حزمة التطبيق، ونحو 500 سطر في الاختبارات، وتتوزع على النحو الآتي:</p>
+<pre>scholarpath/
+  agents/reader.py      Agent 1: prompt, normalization, node
+  agents/searcher.py    Agent 2: prompt, bounded tool loop, node
+  agents/scoring.py     transparent 0-100 match scoring
+  agents/reporter.py    Agent 3: prompt, grounding check, node
+  tools/catalog.py      local catalog search tool
+  tools/web_search.py   optional Tavily web search tool
+  graph.py              StateGraph, routing, run_pipeline()
+  schemas.py, state.py  Pydantic contracts and shared state
+  llm.py, offline_llm.py  model factory and offline model
+  cli.py, api.py        interfaces
+data/opportunities.json sample catalog (30 entries)
+examples/               three sample students
+tests/                  offline test suite</pre>
+</section>
+
+<!-- ============ 6. RESULTS ============ -->
+<section class="chapter">
+  <h1><span class="num">6.</span>النتائج</h1>
+
+  <h2>6.1 نتائج الاختبارات الآلية</h2>
+  <p>نُفذت مجموعة الاختبارات كاملة دون اتصال بالشبكة ودون أي مفتاح <span class="en n">API</span>، فنجحت جميع الاختبارات الثلاثين، وتُجووز اختبار التكامل مع النموذج الحقيقي لعدم توفر مفتاح. كما اجتازت الشيفرة جميع فحوص الجودة والتنسيق في <span class="en n">Ruff</span>.</p>
+  <div class="keep"><table>
+    <tr><th style="width:24%">ملف الاختبار</th><th class="c" style="width:10%">العدد</th><th>ما يتحقق منه</th></tr>
+    <tr><td><span class="en n">test_reader</span></td><td class="c">11</td><td>تحليل مخرجات النموذج، وحساب الحقول الناقصة، وتوحيد المعدل في سبع حالات، وحذف السنوات غير المعقولة، وشرط طلب التوضيح.</td></tr>
+    <tr><td><span class="en n">test_searcher</span></td><td class="c">9</td><td>مرشحات الكتالوج، ومنطق التقييم، وإزالة التكرار، وتعطيل بحث الويب دون مفتاح، وتحمل فشل الأدوات، وسقف الاستدعاءات، وإزالة المرشحات في البحث الموسع.</td></tr>
+    <tr><td><span class="en n">test_reporter</span></td><td class="c">3</td><td>كشف الأسماء المختلقة، وإعادة التوليد مرة واحدة، والفشل الصريح بعد المحاولة الثانية دون حفظ أي ملف.</td></tr>
+    <tr><td><span class="en n">test_graph</span></td><td class="c">5</td><td>دوال التوجيه، والإيقاف والاستئناف، وتوسيع البحث مرة واحدة بالضبط، والمسار الكامل، والإجابة عن السؤال عبر دالة.</td></tr>
+    <tr><td><span class="en n">test_api</span></td><td class="c">2</td><td>نقطة النهاية، ورفض المدخلات القصيرة.</td></tr>
+    <tr><td><span class="en n">test_integration</span></td><td class="c">1</td><td>تشغيل كامل مع <span class="en n">Claude</span>، وقد تُجووز لعدم توفر مفتاح.</td></tr>
+  </table>
+  <p class="caption">جدول 5: توزيع الاختبارات الآلية. النتيجة: 30 ناجحاً، و1 متجاوز، وصفر فاشل.</p></div>
+
+  <h2>6.2 تجربة التشغيل على ثلاثة طلاب نموذجيين</h2>
+  <p>صُممت ثلاثة أمثلة تمثل حالات مختلفة: طالب ذو ملف قوي، وطالب ذو ملف غامض، وطالب ذو ميزانية محدودة. ويلخص الجدول 6 نتائج تشغيلها في الوضع دون اتصال.</p>
+  <div class="keep"><table>
+    <tr><th style="width:30%">الحالة</th><th class="c">الثقة</th><th class="c">الحقول الناقصة</th><th class="c">استدعاءات الأدوات</th><th class="c">الفرص المرتبة</th><th class="c">الفرص القوية</th></tr>
+    <tr><td>طالب علوم حاسوب في السنة الثالثة يحتاج إلى تمويل كامل</td><td class="c">1.00</td><td class="c">0</td><td class="c">4</td><td class="c">8</td><td class="c">8</td></tr>
+    <tr><td>طالب ثانوية بوصف غامض</td><td class="c">0.33</td><td class="c">6</td><td class="c">3</td><td class="c">8</td><td class="c">6</td></tr>
+    <tr><td>خريج إدارة أعمال يريد دراسة عن بعد بميزانية 500 دولار</td><td class="c">1.00</td><td class="c">0</td><td class="c">4</td><td class="c">4</td><td class="c">4</td></tr>
+  </table>
+  <p class="caption">جدول 6: نتائج تشغيل الأمر <span class="en n">demo</span> على الأمثلة الثلاثة.</p></div>
+
+  <h3>الحالة الأولى: الملف القوي</h3>
+  <div class="keep"><table>
+    <tr><th class="c" style="width:8%">الترتيب</th><th>الفرصة</th><th style="width:16%">النوع</th><th class="c" style="width:12%">الدرجة</th></tr>
+    <tr><td class="c">1</td><td><span class="en">Vector Scholarship in Artificial Intelligence</span></td><td><span class="en n">scholarship</span></td><td class="c">100</td></tr>
+    <tr><td class="c">2</td><td><span class="en">CS50: Introduction to Computer Science</span></td><td><span class="en n">course</span></td><td class="c">89</td></tr>
+    <tr><td class="c">3</td><td><span class="en">Master of Science in Applied Computing (AI Concentration)</span></td><td><span class="en n">degree</span></td><td class="c">85</td></tr>
+    <tr><td class="c">4</td><td><span class="en">Machine Learning Specialization</span></td><td><span class="en n">course</span></td><td class="c">83</td></tr>
+    <tr><td class="c">5</td><td><span class="en n">Data Science Career Track</span></td><td><span class="en n">bootcamp</span></td><td class="c">83</td></tr>
+  </table>
+  <p class="caption">جدول 7: أفضل خمس فرص للطالب الأول.</p></div>
+  <p>جاءت في المرتبة الأولى منحة ممولة في مجال الذكاء الاصطناعي في كندا، وهي تطابق تخصص الطالب وهدفه وبلده المفضل وحاجته إلى التمويل ومعدله. كما أرفق النظام بالبرنامج الثالث مخاوف صريحة نصها أن تكلفته نحو 44,000 دولار وأنه غير ممول، وهو ما يمكّن الطالب من اتخاذ قرار واعٍ.</p>
+
+  <h3>الحالة الثانية: الملف الغامض والتوضيح التفاعلي</h3>
+  <p>في الوضع غير التفاعلي، تابع النظام العمل مع تسجيل الثغرات، واقترح منحاً مفتوحة لطلاب الثانوية مثل <span class="en">Lester B. Pearson International Scholarship</span> بدرجة 80. وفي الوضع التفاعلي، أوقف الرسم التنفيذ وسأل الطالب عن تخصصه وأهدافه. وبعد إجابته بأنه يريد دراسة الأحياء ليصبح طبيباً في مصر، أعاد وكيل القراءة التحليل، فاستخرج التخصص <span class="en n">biology</span> والهدف المهني، وارتفعت الثقة من 0.33 إلى 0.50، ثم اكتمل المسار وحُفظ التقرير.</p>
+
+  <h3>الحالة الثالثة: الميزانية المحدودة</h3>
+  <p>حوّل وكيل القراءة المعدل 82 من 100 إلى 3.28، واستخرج قيد الميزانية البالغ 500 دولار وتفضيل الدراسة عن بعد. وتصدّر النتائج برنامج <span class="en n">ALX Data Analytics Program</span> بدرجة 100 لأنه ممول ومجاني، ثم شهادتا <span class="en n">Google</span> و<span class="en n">IBM</span> في تحليل البيانات بدرجة 98 لكل منهما. واستبعدت مرشحات البحث تلقائياً المعسكرات التي تتجاوز الميزانية.</p>
+
+  <h2>6.3 مناقشة النتائج في ضوء أسئلة البحث</h2>
+  <ul>
+    <li><b>بالنسبة إلى س1:</b> تحقق التمايز الحقيقي بين الوكلاء، إذ يختلف كل منهم في المدخلات والمخرجات والصلاحيات كما في الجدول 2. ولا يمكن استبدال أي وكيل بآخر دون كسر عقود البيانات.</li>
+    <li><b>بالنسبة إلى س2:</b> كل توصية مرفقة بأسباب ومخاوف محسوبة. وأثبتت الاختبارات أن التقرير الذي يذكر فرصة مختلقة يُرفض ويعاد توليده، وأنه إذا تكرر الخطأ يتوقف النظام صراحة.</li>
+    <li><b>بالنسبة إلى س3:</b> عالجت الحافة الشرطية الأولى الملفات الغامضة عبر سؤال واحد موجه. وعالجت الحافة الثانية قلة النتائج، وقد أثبت الاختبار أن مسار التنفيذ عند انعدام النتائج هو <span class="en n">reader</span> ثم <span class="en n">searcher</span> ثم <span class="en n">searcher</span> ثم <span class="en n">reporter</span>، أي أن التوسيع يحدث مرة واحدة بالضبط.</li>
+    <li><b>بالنسبة إلى س4:</b> جعل حقن النموذج والنموذج دون اتصال جميع الاختبارات حتمية وسريعة، إذ تستغرق المجموعة كاملة أقل من ثانية واحدة.</li>
+  </ul>
+
+  <h2>6.4 حدود النسخة الحالية</h2>
+  <ul>
+    <li><b>عدم اختبار النموذج الحقيقي:</b> لم يُشغَّل النظام بعد مع <span class="en n">Claude</span> لعدم توفر مفتاح <span class="en n">API</span> أثناء التطوير. واختبار التكامل جاهز ويعمل تلقائياً عند توفر المفتاح.</li>
+    <li><b>البيانات التجريبية:</b> يضم الكتالوج ثلاثين فرصة لبرامج حقيقية معروفة، لكن مواعيدها ومبالغها مبسطة وقد لا تكون محدثة، والتقارير تنبه الطالب إلى ذلك.</li>
+    <li><b>محدودية النموذج دون اتصال:</b> يعتمد على أنماط نصية بسيطة، فهو مناسب للعرض والاختبار لا للاستخدام الفعلي.</li>
+    <li><b>طبيعة التقييم الجمعية:</b> يسمح الجمع الموزون بأن تعوض الصلة القوية بالتخصص عن قيد صارم. فمثلاً، نال معسكر <span class="en n">Data Science Career Track</span> درجة 83 للطالب الأول رغم أنه غير ممول والطالب يحتاج إلى تمويل كامل. وقد سجل النظام ذلك ضمن المخاوف، لكن الأفضل معاملة القيود الصارمة معاملة خاصة.</li>
+    <li><b>غياب التقييم الميداني:</b> لم تُقس جودة التوصيات بعد مع طلاب حقيقيين أو مرشدين أكاديميين.</li>
+  </ul>
+</section>
+
+<!-- ============ 7. FUTURE ============ -->
+<section class="chapter">
+  <h1><span class="num">7.</span>الآفاق المستقبلية</h1>
+  <p>صُممت البنية لتكون قابلة للتوسع، ويقترح هذا الفصل مسارات التطوير مرتبة حسب الأولوية.</p>
+
+  <h2>7.1 على المدى القريب</h2>
+  <ul>
+    <li><b>التشغيل مع النموذج الحقيقي:</b> تشغيل اختبار التكامل مع <span class="en n">Claude</span>، ومقارنة جودة الاستخراج والتقارير بالنموذج دون اتصال.</li>
+    <li><b>القيود الصارمة في التقييم:</b> تحويل قيود مثل الحاجة إلى التمويل أو الدراسة عن بعد إلى مرشحات أو عقوبات مضاعفة، بدلاً من خصم جمعي يمكن تعويضه.</li>
+    <li><b>توسيع قاعدة البيانات:</b> بناء خط تحديث دوري للكتالوج من المصادر الرسمية، وإضافة تاريخ آخر تحقق لكل فرصة.</li>
+    <li><b>دعم اللغة العربية:</b> تمكين الطالب من الكتابة بالعربية واستلام التقرير بها، مع ترك المصطلحات وأسماء البرامج بلغتها الأصلية.</li>
+  </ul>
+
+  <h2>7.2 على المدى المتوسط</h2>
+  <ul>
+    <li><b>وكيل رابع لتتبع المواعيد <span class="en n">Deadline Tracker</span>:</b> يُضاف بين وكيل البحث ووكيل التقرير، ويحول المواعيد إلى تقويم وتذكيرات. وتتطلب إضافته ملفاً واحداً وتسجيلاً في دالة <span class="en n">build_graph</span>.</li>
+    <li><b>البحث الدلالي:</b> استبدال البحث بالكلمات المفتاحية ببحث يعتمد على <span class="en n">Embeddings</span> لتحسين المطابقة بين المصطلحات المتقاربة، مثل <span class="en n">AI</span> و<span class="en n">Artificial Intelligence</span>.</li>
+    <li><b>واجهة مستخدم:</b> واجهة ويب بسيطة تعرض التقرير وتتيح المحادثة لتعديل القيود وإعادة البحث.</li>
+    <li><b>حفظ دائم للحالة:</b> استبدال <span class="en n">MemorySaver</span> بمخزن دائم مثل <span class="en n">SQLite</span> أو <span class="en n">PostgreSQL</span>، ليعود الطالب إلى ملفه لاحقاً.</li>
+  </ul>
+
+  <h2>7.3 على المدى البعيد</h2>
+  <ul>
+    <li><b>التقييم الميداني:</b> تجربة مع طلاب ومرشدين أكاديميين لقياس دقة التوصيات ورضا المستخدمين، باستخدام مقاييس مثل <span class="en n">Precision@k</span> و<span class="en n">nDCG</span>.</li>
+    <li><b>التصفية التعاونية:</b> بعد تجمع بيانات الاستخدام، تُضاف إشارات من سلوك طلاب مشابهين إلى التقييم الهجين.</li>
+    <li><b>وكيل المساعدة في التقديم:</b> مساعدة الطالب في كتابة خطاب الغرض <span class="en n">Statement of Purpose</span> المخصص لكل فرصة.</li>
+    <li><b>المراقبة والتقييم المستمر:</b> تتبع جودة مخرجات الوكلاء في الإنتاج عبر أدوات المراقبة، وبناء مجموعة تقييم ثابتة لاكتشاف أي تراجع.</li>
+  </ul>
+</section>
+
+<!-- ============ 8. CONCLUSION ============ -->
+<section class="chapter">
+  <h1><span class="num">8.</span>الخاتمة</h1>
+  <p>قدم هذا التقرير مشروع <span class="en n">ScholarPath</span>، وهو نسخة أولية قابلة للتشغيل من منصة إرشاد تعليمي تعتمد على ثلاثة وكلاء متخصصين ينسقها إطار <span class="en n">LangGraph</span>. وقد بيّن العمل أن التمايز الحقيقي بين الوكلاء يتحقق بفصل الصلاحيات والعقود لا بتغيير الأسماء، وأن الجمع بين مرونة النماذج اللغوية وموثوقية البيانات المنظمة والتحقق اللاحق ينتج توصيات قابلة للتفسير وخالية من الاختلاق.</p>
+  <p>ويعمل النظام من البداية إلى النهاية، وتنجح جميع اختباراته دون اتصال، ويتعامل مع الملفات الغامضة والنتائج الشحيحة عبر حلقتين شرطيتين. وتبقى أمامه خطوات واضحة قبل الاستخدام الفعلي، أبرزها التشغيل مع النموذج الحقيقي، وتحديث البيانات، والتقييم الميداني. ويوفر التصميم الحالي أساساً متيناً لهذه الخطوات.</p>
+</section>
+
+<!-- ============ REFERENCES ============ -->
+<section class="chapter">
+  <h1>المراجع</h1>
+<!--noen-->
+  <ol class="refs">
+    <li>L. Wang, C. Ma, X. Feng, et al., "A Survey on Large Language Model based Autonomous Agents," <i>Frontiers of Computer Science</i>, vol. 18, no. 6, 2024.</li>
+    <li>S. Yao, J. Zhao, D. Yu, N. Du, I. Shafran, K. Narasimhan, and Y. Cao, "ReAct: Synergizing Reasoning and Acting in Language Models," in <i>Proc. ICLR</i>, 2023.</li>
+    <li>T. Schick, J. Dwivedi-Yu, R. Dessì, et al., "Toolformer: Language Models Can Teach Themselves to Use Tools," in <i>Proc. NeurIPS</i>, 2023.</li>
+    <li>Q. Wu, G. Bansal, J. Zhang, et al., "AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation," arXiv:2308.08155, 2023.</li>
+    <li>S. Hong, M. Zhuge, J. Chen, et al., "MetaGPT: Meta Programming for a Multi-Agent Collaborative Framework," in <i>Proc. ICLR</i>, 2024.</li>
+    <li>F. Ricci, L. Rokach, and B. Shapira, Eds., <i>Recommender Systems Handbook</i>, 3rd ed. Springer, 2022.</li>
+    <li>P. Lops, M. de Gemmis, and G. Semeraro, "Content-based Recommender Systems: State of the Art and Trends," in <i>Recommender Systems Handbook</i>, Springer, 2011, pp. 73–105.</li>
+    <li>R. Burke, "Hybrid Recommender Systems: Survey and Experiments," <i>User Modeling and User-Adapted Interaction</i>, vol. 12, no. 4, pp. 331–370, 2002.</li>
+    <li>N. Manouselis, H. Drachsler, R. Vuorikari, H. Hummel, and R. Koper, "Recommender Systems in Technology Enhanced Learning," in <i>Recommender Systems Handbook</i>, Springer, 2011, pp. 387–415.</li>
+    <li>Z. Ji, N. Lee, R. Frieske, et al., "Survey of Hallucination in Natural Language Generation," <i>ACM Computing Surveys</i>, vol. 55, no. 12, 2023.</li>
+    <li>P. Lewis, E. Perez, A. Piktus, et al., "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks," in <i>Proc. NeurIPS</i>, 2020.</li>
+    <li>S. Amershi, D. Weld, M. Vorvoreanu, et al., "Guidelines for Human-AI Interaction," in <i>Proc. CHI</i>, 2019.</li>
+    <li>LangChain, "LangGraph Documentation," https://langchain-ai.github.io/langgraph/, accessed November 2026.</li>
+  </ol>
+<!--/noen-->
+</section>
+
+</body>
+</html>
